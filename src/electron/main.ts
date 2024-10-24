@@ -2,8 +2,6 @@ import { app, BrowserWindow } from "electron";
 // full OS support via path
 import path from "path";
 
-type test = string;
-
 app.on("ready", () => {
   const window = new BrowserWindow({
     width: 800,
