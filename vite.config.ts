@@ -7,5 +7,10 @@ export default defineConfig({
   base: "./",
   build: {
     outDir: "dist-react"
+  },
+  // hot reloading server for dev
+  server: {
+    port: 5123,
+    strictPort: true
   }
 });
