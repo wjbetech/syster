@@ -1,0 +1,23 @@
+# Project Setup
+
+This Electron application uses several tools for a smooth development experience. Here’s a breakdown of `cross-env` and `npm-run-all`:
+
+## cross-env
+
+Electron applications often require different environment variables for development and production builds. Setting these environment variables can vary depending on the operating system, which can cause issues in cross-platform development.
+
+`cross-env` helps solve this by providing a consistent, cross-platform way to set environment variables. This allows us to specify variables like `NODE_ENV=development` without worrying about OS compatibility. For instance, in our development script:
+
+```json
+"dev:electron": "npm run transpile:electron && cross-env NODE_ENV=development electron ."
+```
+
+Note that You cannot use ; after `transpile:electron`, you must use `&&` to chain commands without errors.
+
+## npm-run-all
+
+The package npm-run-all manages multiple scripts that need to run in parallel. Running both the React frontend (using Vite) and the Electron main process simultaneously is essential for development. However, managing these processes manually can be tedious and error-prone. This is a pure DX improvement.
+
+```json
+"dev:all": "npm-run-all --parallel dev:react dev:electron"
+```
