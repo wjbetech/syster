@@ -21,3 +21,7 @@ The package npm-run-all manages multiple scripts that need to run in parallel. R
 ```json
 "dev:all": "npm-run-all --parallel dev:react dev:electron"
 ```
+
+## os-utils
+
+The package os-utils is required in order to get information on our CPU and RAM.
