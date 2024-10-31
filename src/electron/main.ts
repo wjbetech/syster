@@ -3,6 +3,7 @@ import { app, BrowserWindow } from "electron";
 import path from "path";
 import { isDev } from "./utils/utils.js";
 import { pollResources } from "./utils/resourceManager.js";
+import { getStorageData } from "./utils/diskManager.js";
 
 app.on("ready", () => {
   // dev vs prod toggle
@@ -14,4 +15,5 @@ app.on("ready", () => {
   }
 
   pollResources();
+  getStorageData();
 });

@@ -1,5 +1,6 @@
 import osUtils from "os-utils";
 
+// interval for gathering dynamic data
 const POLLING_INTERVAL = 500;
 
 export function pollResources() {
