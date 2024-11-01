@@ -14,11 +14,11 @@ export function getStorageData(): StorageInfo[] {
   const storageData: StorageInfo[] = [];
 
   if (process.platform === "win32") {
-    // Windows: use 'wmic' to get drives
+    // windows: use 'wmic' to get drives
     const drives = execSync("wmic logicaldisk get name").toString().split("\r\r\n");
     drives.forEach((drive) => {
       const path = drive.trim();
-      if (path) {
+      if (path && path !== "Name") {
         try {
           const stats = fs.statfsSync(path + "/");
           const total = stats.bsize * stats.blocks;
@@ -42,8 +42,8 @@ export function getStorageData(): StorageInfo[] {
 
     lines.forEach((line) => {
       const parts = line.split(/\s+/);
+      // Check to ensure all necessary parts exist
       if (parts.length >= 7) {
-        // Check to ensure all necessary parts exist
         const mountPath = parts[6];
         const total = parseInt(parts[2]) * 1024; // Total in bytes
         const free = parseInt(parts[4]) * 1024; // Free in bytes
@@ -62,3 +62,4 @@ export function getStorageData(): StorageInfo[] {
 }
 
 console.log(getStorageData());
+console.log(`\n`);
