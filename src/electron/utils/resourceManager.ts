@@ -26,14 +26,14 @@ function getStaticCpuInfo() {
 // dynamic data
 async function getDynamicInfo() {
   // RAM
-  const totalMem = `${osUtils.totalmem().toFixed(1)}MB`;
-  const freeMem = `${osUtils.freemem().toFixed(1)}MB`;
+  const totalMem = `${(osUtils.totalmem() / 1024).toFixed(1)}GB`;
+  const freeMem = `${(osUtils.freemem() / 1024).toFixed(1)}GB`;
   const freeMemPercent = `${Number(osUtils.freememPercentage().toPrecision(1)) * 100}%`;
 
   // CPU
   const cpuUsage = await new Promise((resolve) => {
     osUtils.cpuUsage((percentage) => {
-      resolve(`${Number(percentage.toPrecision(1)) * 100}%`);
+      resolve(`${Number(percentage.toFixed(1)) * 100}%`);
     });
   });
   return { freeMem, totalMem, freeMemPercent, cpuUsage };
