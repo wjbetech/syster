@@ -1,4 +1,5 @@
 import osUtils from "os-utils";
+import os from "os";
 
 // interval for gathering dynamic data
 const POLLING_INTERVAL = 500;
@@ -16,9 +17,10 @@ export function pollResources() {
 // static data
 function getStaticCpuInfo() {
   const cpuPlatform = `System Platform: ${osUtils.platform()}`;
-  const coreCount = `Core Count : ${osUtils.cpuCount().toFixed(1)}`;
-  console.log(cpuPlatform + `\n` + coreCount + `\n` + `-----------------------`);
-  return { cpuPlatform, coreCount };
+  const coreCount = `Thread Count : ${osUtils.cpuCount().toFixed(0)}`;
+  const cpuModel = `CPU Model: ${os.cpus()[0].model}`;
+  console.log(cpuPlatform + `\n` + cpuModel + `\n` + coreCount + `\n` + `-----------------------`);
+  return { cpuPlatform, coreCount, cpuModel };
 }
 
 // dynamic data
