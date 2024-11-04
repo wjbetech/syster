@@ -10,7 +10,7 @@ export function pollResources() {
 
   // handle dynamic CPU data
   setInterval(() => {
-    getDynamicInfo().then((info) => console.log(info));
+    getDynamicInfo();
   }, POLLING_INTERVAL);
 }
 
@@ -20,7 +20,7 @@ function getStaticCpuInfo() {
   const cpuPlatform = `System Platform: ${osUtils.platform()}`;
   const coreCount = `Thread Count : ${osUtils.cpuCount().toFixed(0)}`;
   const cpuModel = `CPU Model: ${os.cpus()[0].model}`;
-  console.log(cpuPlatform + `\n` + cpuModel + `\n` + coreCount + `\n` + `-----------------------`);
+  // console.log(cpuPlatform + `\n` + cpuModel + `\n` + coreCount + `\n` + `-----------------------`);
   return { cpuPlatform, coreCount, cpuModel };
 }
 
