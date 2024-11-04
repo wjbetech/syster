@@ -1,6 +1,7 @@
 {
   "appId": "com.wjbetech.electron",
   "files": ["dist-electron", "dist-react"],
+  "extraResources": ["dist-electron/preload.cjs"],
   "icon": "./syster-icon.png",
   "mac": {
     "target": "dmg"
