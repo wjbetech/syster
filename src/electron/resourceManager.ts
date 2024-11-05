@@ -8,8 +8,8 @@ const POLLING_INTERVAL = 500;
 export function pollResources(mainWindow: BrowserWindow) {
   setInterval(async () => {
     // grab static CPU data
-    const staticData = getStaticCpuInfo();
-    const dynamicData = await getDynamicInfo();
+    const staticData = getStaticData();
+    const dynamicData = await getDynamicData();
     mainWindow.webContents.send("statistics", {
       staticData,
       dynamicData
@@ -18,7 +18,7 @@ export function pollResources(mainWindow: BrowserWindow) {
 }
 
 // static data
-function getStaticCpuInfo() {
+export function getStaticData() {
   // CPU
   const cpuPlatform = `System Platform: ${osUtils.platform()}`;
   const coreCount = `Thread Count : ${osUtils.cpuCount().toFixed(0)}`;
@@ -28,7 +28,7 @@ function getStaticCpuInfo() {
 }
 
 // dynamic data
-async function getDynamicInfo() {
+export async function getDynamicData() {
   // RAM
   const totalMem = `${(osUtils.totalmem() / 1024).toFixed(1)}GB`;
   const freeMem = `${(osUtils.freemem() / 1024).toFixed(1)}GB`;

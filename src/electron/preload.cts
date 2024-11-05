@@ -6,8 +6,8 @@ electron.contextBridge.exposeInMainWorld("electron", {
     electron.ipcRenderer.on("statistics", (event, stats) => {
       callback(stats);
     });
-    getStaticData: () => console.log("static");
-  }
+  },
+  getStaticData: () => electron.ipcRenderer.invoke("getStaticData")
 });
 
 // the "main world" is the JS context that your main renderer('backend') code runs in

@@ -1,8 +1,8 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 // full OS support via path
 import path from "path";
 import { isDev } from "./utils/utils.js";
-import { pollResources } from "./resourceManager.js";
+import { getStaticData, pollResources } from "./resourceManager.js";
 import { getPreloadPath } from "./pathResolver.js";
 // import { getStorageData } from "./utils/diskManager.js";
 
@@ -20,5 +20,9 @@ app.on("ready", () => {
   }
 
   pollResources(mainWindow);
-  // getStorageData();
+
+  ipcMain.handle("getStaticData", (event) => {
+    console.log(event);
+    return getStaticData();
+  });
 });
