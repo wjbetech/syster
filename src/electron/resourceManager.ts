@@ -35,9 +35,9 @@ export async function getDynamicData() {
   const freeMemPercent = `${Math.floor(Number(osUtils.freememPercentage().toPrecision(1)) * 100)}%`;
 
   // CPU
-  const cpuUsage = await new Promise((resolve) => {
+  const cpuUsage: string = await new Promise((resolve) => {
     osUtils.cpuUsage((percentage) => {
-      resolve(`${Number(percentage.toFixed(1)) * 100}%`);
+      resolve(`${String(Number(percentage.toFixed(1)) * 100)}%`);
     });
   });
   return { freeMem, totalMem, freeMemPercent, cpuUsage };
