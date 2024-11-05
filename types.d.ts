@@ -18,3 +18,8 @@ interface Window {
     getStaticData: () => Promise<Statistics["staticData"]>;
   };
 }
+
+// map payloads to ensure consistent IPC-bus type safety
+type EventPayloadMapping = {
+  statistics: Statistics;
+};
