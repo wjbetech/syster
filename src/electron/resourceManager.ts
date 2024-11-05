@@ -1,16 +1,19 @@
 import osUtils from "os-utils";
 import os from "os";
+import { BrowserWindow } from "electron";
 
 // interval for gathering dynamic data
 const POLLING_INTERVAL = 500;
 
-export function pollResources() {
-  // grab static CPU data
-  getStaticCpuInfo();
-
-  // handle dynamic CPU data
-  setInterval(() => {
-    getDynamicInfo();
+export function pollResources(mainWindow: BrowserWindow) {
+  setInterval(async () => {
+    // grab static CPU data
+    const staticData = getStaticCpuInfo();
+    const dynamicData = await getDynamicInfo();
+    mainWindow.webContents.send("statistics", {
+      staticData,
+      dynamicData
+    });
   }, POLLING_INTERVAL);
 }
 
