@@ -22,4 +22,9 @@ interface Window {
 // map payloads to ensure consistent IPC-bus type safety
 type EventPayloadMapping = {
   statistics: Statistics;
+  getStaticData: {
+    cpuPlatform: string;
+    coreCount: string;
+    cpuModel: string;
+  };
 };
