@@ -4,7 +4,7 @@ import { BrowserWindow } from "electron";
 import { ipcSendWebContents } from "./utils/utils.js";
 
 // interval for gathering dynamic data
-const POLLING_INTERVAL = 2000;
+const POLLING_INTERVAL = 500;
 
 export function pollResources(mainWindow: BrowserWindow) {
   setInterval(async () => {
