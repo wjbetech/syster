@@ -19,12 +19,11 @@ export function pollResources(mainWindow: BrowserWindow) {
 
 // static data
 export function getStaticData() {
-  // CPU
-  const cpuPlatform = `System Platform: ${osUtils.platform()}`;
-  const coreCount = `Thread Count : ${osUtils.cpuCount().toFixed(0)}`;
-  const cpuModel = `CPU Model: ${os.cpus()[0].model}`;
-  // console.log(cpuPlatform + `\n` + cpuModel + `\n` + coreCount + `\n` + `-----------------------`);
-  return { cpuPlatform, coreCount, cpuModel };
+  return {
+    cpuPlatform: `${osUtils.platform()}`,
+    coreCount: `${osUtils.cpuCount().toFixed(0)}`,
+    cpuModel: `${os.cpus()[0].model}`
+  };
 }
 
 // dynamic data

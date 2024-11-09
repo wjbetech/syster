@@ -8,8 +8,15 @@ export function isDev(): boolean {
 // feature toggle different tools for dev vs prod
 // e.g. vite hot-reload in dev, prebuilt for prod
 
-export function ipcHandle<Key extends string>(key: Key, handler: () => void) {
-  ipcMain.handle(key, () => {
-    return handler();
+export async function ipcHandle<Key extends keyof EventPayloadMapping>(
+  key: Key,
+  // allow handler to return a Promise to ensure async compatibility
+  handler: () => EventPayloadMapping[Key] | Promise<EventPayloadMapping[Key]>
+) {
+  ipcMain.handle(key, async () => {
+    // await handler result is fully resolved before returning
+    return await handler();
   });
 }
+
+// ipcHandle("statistics")
