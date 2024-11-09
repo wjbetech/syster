@@ -1,14 +1,13 @@
 const electron = require("electron");
 
 electron.contextBridge.exposeInMainWorld("electron", {
-  // create a bi-directional sync bridge across contexts.
-  subscribeStatistics: (callback) => {
+  subscribeStatistics: (callback: (statistics: Statistics) => void) => {
     ipcOn("statistics", (stats) => {
       callback(stats);
     });
   },
-  getStaticData: () => ipcInvoke("getStaticData")
-} satisfies Window["electron"]);
+  getStatistics: () => ipcInvoke("statistics") // Add this method to retrieve both static and dynamic data
+});
 
 // the "main world" is the JS context that your main renderer('backend') code runs in
 // exposeInMainWorld takes an apiKey and api.

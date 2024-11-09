@@ -1,4 +1,6 @@
-import { ipcMain, WebContents } from "electron";
+import { ipcMain, WebContents, WebFrameMain } from "electron";
+import { getUIPath } from "../pathResolver.js";
+import { pathToFileURL } from "url";
 
 export function isDev(): boolean {
   return process.env.NODE_ENV === "development";
@@ -14,7 +16,8 @@ export async function ipcMainHandle<Key extends keyof EventPayloadMapping>(
   // allow handler to return a Promise to ensure async compatibility.
   handler: () => EventPayloadMapping[Key] | Promise<EventPayloadMapping[Key]>
 ) {
-  ipcMain.handle(key, async () => {
+  ipcMain.handle(key, async (event) => {
+    validateEventFrame(event.senderFrame);
     // await handler result is fully resolved before returning.
     return await handler();
   });
@@ -29,4 +32,13 @@ export async function ipcSendWebContents<Key extends keyof EventPayloadMapping>(
   payload: EventPayloadMapping[Key] | Promise<EventPayloadMapping[Key]>
 ) {
   webContents.send(key, payload);
+}
+
+export function validateEventFrame(frame: WebFrameMain) {
+  if (isDev() && new URL(frame.url).host === "localhost:5125") {
+    return;
+  }
+  if (frame.url !== pathToFileURL(getUIPath()).toString()) {
+    throw new Error("Malicious event received!");
+  }
 }

@@ -1,9 +1,7 @@
 import { app, BrowserWindow } from "electron";
-// full OS support via path
-import path from "path";
 import { ipcMainHandle, isDev } from "./utils/utils.js";
 import { getDynamicData, getStaticData, pollResources } from "./resourceManager.js";
-import { getPreloadPath } from "./pathResolver.js";
+import { getPreloadPath, getUIPath } from "./pathResolver.js";
 // import { getStorageData } from "./utils/diskManager.js";
 
 app.on("ready", () => {
@@ -16,7 +14,7 @@ app.on("ready", () => {
   if (isDev()) {
     mainWindow.loadURL("http://localhost:5123");
   } else {
-    mainWindow.loadFile(path.join(app.getAppPath(), "/dist-react/index.html"));
+    mainWindow.loadFile(getUIPath());
   }
 
   pollResources(mainWindow);

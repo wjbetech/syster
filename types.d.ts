@@ -15,7 +15,8 @@ type Statistics = {
 interface Window {
   electron: {
     subscribeStatistics: (callback: (statistics: Statistics) => void) => void;
-    getStaticData: () => Promise<Statistics["staticData"]>;
+    getStaticData: () => Promise<{ cpuPlatform: string; coreCount: string; cpuModel: string }>;
+    getStatistics: () => Promise<Statistics>; // Add this line to define getStatistics
   };
 }
 
