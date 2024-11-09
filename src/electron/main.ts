@@ -1,7 +1,7 @@
 import { app, BrowserWindow } from "electron";
 // full OS support via path
 import path from "path";
-import { ipcHandle, isDev } from "./utils/utils.js";
+import { ipcMainHandle, isDev } from "./utils/utils.js";
 import { getDynamicData, getStaticData, pollResources } from "./resourceManager.js";
 import { getPreloadPath } from "./pathResolver.js";
 // import { getStorageData } from "./utils/diskManager.js";
@@ -21,7 +21,7 @@ app.on("ready", () => {
 
   pollResources(mainWindow);
 
-  ipcHandle("statistics", async () => {
+  ipcMainHandle("statistics", async () => {
     return {
       staticData: getStaticData(),
       dynamicData: await getDynamicData()

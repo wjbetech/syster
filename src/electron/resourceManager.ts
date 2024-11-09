@@ -1,6 +1,7 @@
 import osUtils from "os-utils";
 import os from "os";
 import { BrowserWindow } from "electron";
+import { ipcSendWebContents } from "./utils/utils.js";
 
 // interval for gathering dynamic data
 const POLLING_INTERVAL = 500;
@@ -10,7 +11,7 @@ export function pollResources(mainWindow: BrowserWindow) {
     // grab static CPU data
     const staticData = getStaticData();
     const dynamicData = await getDynamicData();
-    mainWindow.webContents.send("statistics", {
+    ipcSendWebContents("statistics", mainWindow.webContents, {
       staticData,
       dynamicData
     });
