@@ -1,3 +1,5 @@
+type Unsubscribe = () => void;
+
 type Statistics = {
   staticData: {
     cpuPlatform: string;
@@ -14,7 +16,7 @@ type Statistics = {
 
 interface Window {
   electron: {
-    subscribeStatistics: (callback: (statistics: Statistics) => void) => void;
+    subscribeStatistics: (callback: (statistics: Statistics) => void) => Unsubscribe;
     getStaticData: () => Promise<{ cpuPlatform: string; coreCount: string; cpuModel: string }>;
     getStatistics: () => Promise<Statistics>; // Add this line to define getStatistics
   };

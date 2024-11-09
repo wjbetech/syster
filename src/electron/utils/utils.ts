@@ -35,7 +35,7 @@ export async function ipcSendWebContents<Key extends keyof EventPayloadMapping>(
 }
 
 export function validateEventFrame(frame: WebFrameMain) {
-  if (isDev() && new URL(frame.url).host === "localhost:5125") {
+  if (isDev() && new URL(frame.url).host === "localhost:5123") {
     return;
   }
   if (frame.url !== pathToFileURL(getUIPath()).toString()) {

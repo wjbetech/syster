@@ -22,5 +22,7 @@ export function ipcOn<Key extends keyof EventPayloadMapping>(
   key: Key,
   callback: (payload: EventPayloadMapping[Key]) => void
 ) {
-  return electron.ipcRenderer.on(key, (_, payload) => callback(payload));
+  const cbHelperFunc = (_: Electron.IpcRendererEvent, payload: any) => callback(payload);
+  electron.ipcRenderer.on(key, cbHelperFunc);
+  return () => electron.ipcRenderer.off(key, cbHelperFunc);
 }

@@ -3,7 +3,8 @@ import "./App.css";
 
 function App() {
   useEffect(() => {
-    window.electron.subscribeStatistics((stats) => console.log(stats));
+    const unsub = window.electron.subscribeStatistics((stats) => console.log(stats));
+    return unsub;
   }, []);
 
   return (
