@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 import { useStatistics } from "../hooks/useStatistics";
 import "./App.css";
-import BaseChart from "./components/BaseChart";
 import Chart from "./components/Chart";
 
 function App() {
@@ -17,7 +16,10 @@ function App() {
   return (
     <div className="App">
       <div style={{ height: 120 }}>
-        <Chart data={cpuUsage} />
+        <Chart
+          data={cpuUsage}
+          maxDataPoints={10}
+        />
       </div>
     </div>
   );
