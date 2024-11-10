@@ -1,11 +1,9 @@
-import React from 'react'
-import BaseChart
+import BaseChart from "./BaseChart";
 
-type Props = {}
+export type ChartProps = {
+  data: { value: number | string }[];
+};
 
-export default function Chart({}: Props) {
-  return (
-    <BaseChart>
-    </BaseChart>
-  )
+export default function Chart(props: ChartProps) {
+  return <BaseChart data={props.data} />;
 }
