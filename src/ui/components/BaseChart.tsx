@@ -6,17 +6,21 @@ type BaseChartProps = {
 
 export default function BaseChart(props: BaseChartProps) {
   return (
-    <ResponsiveContainer>
+    <ResponsiveContainer
+      width="100%"
+      height={120}
+    >
+      <h1>CPU Usage</h1>
       <AreaChart data={props.data}>
         <CartesianGrid
           stroke="#333"
           strokeDasharray="5 5"
-          fill="1C1C1C"
+          fill="#1C1C1C" // Corrected color format
         />
         <Area
           fillOpacity={0.3}
-          fill={"#0A4D5C"}
-          stroke={"#5DD4EE"}
+          fill="#0A4D5C"
+          stroke="#5DD4EE"
           strokeWidth={3}
           type="monotone"
           dataKey="value"
