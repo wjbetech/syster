@@ -8,12 +8,12 @@ export default function BaseChart(props: BaseChartProps) {
   return (
     <ResponsiveContainer
       width="100%"
-      height={160}
+      height={120}
     >
       <AreaChart data={props.data}>
         <CartesianGrid
           stroke="#333"
-          strokeDasharray="8 8"
+          strokeDasharray="1 1"
           fill="#1C1C1C" // Corrected color format
         />
         <Area
@@ -21,16 +21,16 @@ export default function BaseChart(props: BaseChartProps) {
           fill="#0A4D5C"
           stroke="#5DD4EE"
           strokeWidth={2}
-          type="monotone"
+          type="basis"
           dataKey="value"
-          isAnimationActive={false}
+          isAnimationActive={true}
         />
         <XAxis
           stroke="transparent"
-          height={0}
+          height={2}
         />
         <YAxis
-          domain={[0, 100]}
+          domain={[50, 100]}
           stroke="transparent"
           width={0}
         />

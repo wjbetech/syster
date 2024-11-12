@@ -3,21 +3,21 @@ type Unsubscribe = () => void;
 type Statistics = {
   staticData: {
     cpuPlatform: string;
-    coreCount: string;
+    coreCount: number;
     cpuModel: string;
   };
   dynamicData: {
-    freeMem: string;
-    totalMem: string;
-    freeMemPercent: string;
-    cpuUsage: string;
+    freeMem: number;
+    totalMem: number;
+    freeMemPercent: number;
+    cpuUsage: number;
   };
 };
 
 interface Window {
   electron: {
     subscribeStatistics: (callback: (statistics: Statistics) => void) => Unsubscribe;
-    getStaticData: () => Promise<{ cpuPlatform: string; coreCount: string; cpuModel: string }>;
+    getStaticData: () => Promise<{ cpuPlatform: string; coreCount: number; cpuModel: string }>;
     getStatistics: () => Promise<Statistics>; // Add this line to define getStatistics
   };
 }
@@ -27,7 +27,7 @@ type EventPayloadMapping = {
   statistics: Statistics;
   getStaticData: {
     cpuPlatform: string;
-    coreCount: string;
+    coreCount: number;
     cpuModel: string;
   };
 };
