@@ -14,7 +14,8 @@ export default function BaseChart(props: BaseChartProps) {
         <CartesianGrid
           stroke="#333"
           strokeDasharray="1 1"
-          fill="#1C1C1C" // Corrected color format
+          fill="#1C1C1C"
+          horizontalPoints={[40, 80]}
         />
         <Area
           fillOpacity={0.3}
@@ -27,7 +28,7 @@ export default function BaseChart(props: BaseChartProps) {
         />
         <XAxis
           stroke="transparent"
-          height={2}
+          height={0}
         />
         <YAxis
           domain={[50, 100]}
