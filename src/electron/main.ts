@@ -1,8 +1,9 @@
-import { app, BrowserWindow, Tray } from "electron";
+import { app, BrowserWindow } from "electron";
 import { ipcMainHandle, isDev } from "./utils/utils.js";
 import { getDynamicData, getStaticData, pollResources } from "./resourceManager.js";
-import { getAssetPath, getPreloadPath, getUIPath } from "./pathResolver.js";
-import path from "path";
+import { getPreloadPath, getUIPath } from "./pathResolver.js";
+import { createTray } from "./tray.js";
+import { handleCloseEvents } from "./closeEvents.js";
 // import { getStorageData } from "./utils/diskManager.js";
 
 app.on("ready", () => {
@@ -27,9 +28,6 @@ app.on("ready", () => {
     };
   });
 
-  new Tray(path.join(getAssetPath(), process.platform === "darwin" ? "trayIconTemplate.png" : "trayIcon.png"));
-
-  mainWindow.on("close", (event) => {
-    event.preventDefault();
-  });
+  createTray(mainWindow);
+  handleCloseEvents(mainWindow);
 });
