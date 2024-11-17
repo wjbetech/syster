@@ -4,6 +4,7 @@ import { getDynamicData, getStaticData, pollResources } from "./resourceManager.
 import { getPreloadPath, getUIPath } from "./pathResolver.js";
 import { createTray } from "./tray.js";
 import { handleCloseEvents } from "./closeEvents.js";
+import { createMenu } from "./menu.js";
 // import { getStorageData } from "./utils/diskManager.js";
 
 app.on("ready", () => {
@@ -30,4 +31,5 @@ app.on("ready", () => {
 
   createTray(mainWindow);
   handleCloseEvents(mainWindow);
+  createMenu();
 });
