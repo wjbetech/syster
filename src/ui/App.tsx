@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useStatistics } from "../hooks/useStatistics";
 import "./App.css";
 import Chart from "./components/Chart";
@@ -12,6 +12,12 @@ function App() {
 
   // console.log("CPU Usage Data:", cpuUsage); // For debugging
   // console.log("RAM Usage Data:", ramUsage); // For debugging
+
+  useEffect(() => {
+    return window.electron.subscribeChangeView((view) => {
+      console.log(view);
+    });
+  }, []);
 
   return (
     <div className="App">

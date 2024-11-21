@@ -14,7 +14,7 @@ type Statistics = {
   };
 };
 
-type View = "CPU" | "RAM" | "Storage";
+type View = "CPU" | "RAM" | "Storage" | "Theme" | "Apps";
 
 interface Window {
   electron: {

@@ -37,10 +37,16 @@ export function createMenu(mainWindow: BrowserWindow) {
             }
           },
           {
-            label: "Desktop Theme"
+            label: "Desktop Theme",
+            click: () => {
+              ipcSendWebContents("changeView", mainWindow.webContents, "Theme");
+            }
           },
           {
-            label: "Applications"
+            label: "Applications",
+            click: () => {
+              ipcSendWebContents("changeView", mainWindow.webContents, "Apps");
+            }
           }
         ]
       },
