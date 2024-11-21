@@ -14,11 +14,14 @@ type Statistics = {
   };
 };
 
+type View = "CPU" | "RAM" | "Storage";
+
 interface Window {
   electron: {
     subscribeStatistics: (callback: (statistics: Statistics) => void) => Unsubscribe;
     getStaticData: () => Promise<{ cpuPlatform: string; coreCount: number; cpuModel: string }>;
-    getStatistics: () => Promise<Statistics>; // Add this line to define getStatistics
+    getStatistics: () => Promise<Statistics>;
+    subscribeChangeView: (callback: (view: View) => void) => Unsubscribe;
   };
 }
 
@@ -30,4 +33,5 @@ type EventPayloadMapping = {
     coreCount: number;
     cpuModel: string;
   };
+  changeView: View;
 };

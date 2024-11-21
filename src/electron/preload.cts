@@ -6,7 +6,12 @@ electron.contextBridge.exposeInMainWorld("electron", {
       callback(stats);
     });
   },
-  getStatistics: () => ipcInvoke("statistics") // Add this method to retrieve both static and dynamic data
+  subscribeChangeView: (callback: (view: View) => void) => {
+    ipcOn("changeView", (stats) => {
+      callback(stats);
+    });
+  },
+  getStatistics: () => ipcInvoke("statistics")
 });
 
 // the "main world" is the JS context that your main renderer('backend') code runs in

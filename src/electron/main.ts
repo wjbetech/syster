@@ -7,6 +7,10 @@ import { handleCloseEvents } from "./closeEvents.js";
 import { createMenu } from "./menu.js";
 // import { getStorageData } from "./utils/diskManager.js";
 
+// to hide the menu entirely, set:
+// Menu.setApplicationMenu(null) /w Menu import
+// comment out createMenu(mainWindow)
+
 app.on("ready", () => {
   // dev vs prod toggle
   const mainWindow = new BrowserWindow({
@@ -31,5 +35,5 @@ app.on("ready", () => {
 
   createTray(mainWindow);
   handleCloseEvents(mainWindow);
-  createMenu();
+  createMenu(mainWindow);
 });

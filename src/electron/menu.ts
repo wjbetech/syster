@@ -1,6 +1,7 @@
-import { app, Menu } from "electron";
+import { app, BrowserWindow, Menu } from "electron";
+import { ipcSendWebContents, isDev } from "./utils/utils.js";
 
-export function createMenu() {
+export function createMenu(mainWindow: BrowserWindow) {
   Menu.setApplicationMenu(
     Menu.buildFromTemplate([
       {
@@ -18,7 +19,22 @@ export function createMenu() {
         type: "submenu",
         submenu: [
           {
-            label: "Hardware Information"
+            label: "CPU",
+            click: () => {
+              ipcSendWebContents("changeView", mainWindow.webContents, "CPU");
+            }
+          },
+          {
+            label: "RAM",
+            click: () => {
+              ipcSendWebContents("changeView", mainWindow.webContents, "RAM");
+            }
+          },
+          {
+            label: "Storage",
+            click: () => {
+              ipcSendWebContents("changeView", mainWindow.webContents, "Storage");
+            }
           },
           {
             label: "Desktop Theme"
@@ -27,6 +43,19 @@ export function createMenu() {
             label: "Applications"
           }
         ]
+      },
+      {
+        label: "Development",
+        type: "submenu",
+        submenu: [
+          {
+            label: "Developer Tools",
+            click: () => {
+              mainWindow.webContents.toggleDevTools();
+            }
+          }
+        ],
+        visible: isDev()
       }
     ])
   );
