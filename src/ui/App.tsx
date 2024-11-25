@@ -3,12 +3,20 @@ import { useStatistics } from "../hooks/useStatistics";
 import Chart from "./components/Chart";
 
 function App() {
-  const statistics = useStatistics(10);
+  const [views, setViews] = useState<View[]>([
+    "CPU",
+    "RAM",
+    "Storage",
+    "Theme",
+    "Apps",
+  ]);
   const [staticData, setStaticData] = useState({
     cpuPlatform: "",
     coreCount: 0,
     cpuModel: "",
   });
+
+  const statistics = useStatistics(10);
 
   const cpuUsage = useMemo(
     () => statistics.map((stat) => ({ value: stat.dynamicData.cpuUsage })),
