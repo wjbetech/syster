@@ -26,13 +26,13 @@ function App() {
   const ramUsage = useMemo(
     () =>
       statistics.map((stat) => ({
-        value: 100 - stat.dynamicData.freeMemPercent, // Calculate % used
+        value: 100 - stat.dynamicData.freeMemPercent,
       })),
     [statistics]
   );
 
   useEffect(() => {
-    // Fetch static data on app load
+    // Fetch static data on initial app load
     (async () => {
       const staticData = await window.electron.getStaticData();
       setStaticData(staticData);
