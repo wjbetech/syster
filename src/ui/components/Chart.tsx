@@ -9,11 +9,14 @@ export type ChartProps = {
 export default function Chart(props: ChartProps) {
   const preparedData = useMemo(() => {
     const points = props.data.map((point) => ({
-      value: typeof point.value === "number" ? point.value : parseFloat(point.value)
+      value:
+        typeof point.value === "number" ? point.value : parseFloat(point.value),
     }));
     return [
       ...points,
-      ...Array.from({ length: props.maxDataPoints - points.length }).map(() => ({ value: undefined }))
+      ...Array.from({ length: props.maxDataPoints - points.length }).map(
+        () => ({ value: undefined })
+      ),
     ];
   }, [props.data, props.maxDataPoints]);
 

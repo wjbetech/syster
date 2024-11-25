@@ -13,7 +13,7 @@ export function pollResources(mainWindow: BrowserWindow) {
     const dynamicData = await getDynamicData();
     ipcSendWebContents("statistics", mainWindow.webContents, {
       staticData,
-      dynamicData
+      dynamicData,
     });
   }, POLLING_INTERVAL);
 }
@@ -23,22 +23,22 @@ export function getStaticData() {
   return {
     cpuPlatform: `${osUtils.platform()}`,
     coreCount: osUtils.cpuCount(),
-    cpuModel: `${os.cpus()[0].model}`
+    cpuModel: `${os.cpus()[0].model}`,
   };
 }
 
 // dynamic data
 export async function getDynamicData() {
   // RAM
-  const totalMem = Number(osUtils.totalmem() / 1024);
-  const freeMem = (totalMem / 1024) * osUtils.freemem();
-  const freeMemPercent = Math.floor(Number(osUtils.freememPercentage().toPrecision(1)) * 100);
-
+  const totalMem = Number(osUtils.totalmem() / 1024); // Total memory in GB
+  const freeMemPercent = Math.floor(
+    Number(osUtils.freememPercentage().toPrecision(1)) * 100
+  ); // Free memory in percentage
   // CPU
   const cpuUsage: number = await new Promise((resolve) => {
     osUtils.cpuUsage((percentage) => {
       resolve(Number(percentage * 100));
     });
   });
-  return { freeMem, totalMem, freeMemPercent, cpuUsage };
+  return { totalMem, freeMemPercent, cpuUsage };
 }

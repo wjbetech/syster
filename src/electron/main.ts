@@ -1,6 +1,10 @@
 import { app, BrowserWindow } from "electron";
 import { ipcMainHandle, isDev } from "./utils/utils.js";
-import { getDynamicData, getStaticData, pollResources } from "./resourceManager.js";
+import {
+  getDynamicData,
+  getStaticData,
+  pollResources,
+} from "./resourceManager.js";
 import { getPreloadPath, getUIPath } from "./pathResolver.js";
 import { createTray } from "./tray.js";
 import { handleCloseEvents } from "./closeEvents.js";
@@ -15,8 +19,8 @@ app.on("ready", () => {
   // dev vs prod toggle
   const mainWindow = new BrowserWindow({
     webPreferences: {
-      preload: getPreloadPath()
-    }
+      preload: getPreloadPath(),
+    },
   });
   if (isDev()) {
     mainWindow.loadURL("http://localhost:5123");
@@ -29,8 +33,12 @@ app.on("ready", () => {
   ipcMainHandle("statistics", async () => {
     return {
       staticData: getStaticData(),
-      dynamicData: await getDynamicData()
+      dynamicData: await getDynamicData(),
     };
+  });
+
+  ipcMainHandle("getStaticData", () => {
+    return getStaticData();
   });
 
   createTray(mainWindow);

@@ -7,7 +7,6 @@ type Statistics = {
     cpuModel: string;
   };
   dynamicData: {
-    freeMem: number;
     totalMem: number;
     freeMemPercent: number;
     cpuUsage: number;
@@ -18,8 +17,14 @@ type View = "CPU" | "RAM" | "Storage" | "Theme" | "Apps";
 
 interface Window {
   electron: {
-    subscribeStatistics: (callback: (statistics: Statistics) => void) => Unsubscribe;
-    getStaticData: () => Promise<{ cpuPlatform: string; coreCount: number; cpuModel: string }>;
+    subscribeStatistics: (
+      callback: (statistics: Statistics) => void
+    ) => Unsubscribe;
+    getStaticData: () => Promise<{
+      cpuPlatform: string;
+      coreCount: number;
+      cpuModel: string;
+    }>;
     getStatistics: () => Promise<Statistics>;
     subscribeChangeView: (callback: (view: View) => void) => Unsubscribe;
   };
