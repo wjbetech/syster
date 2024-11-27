@@ -13,6 +13,7 @@ electron.contextBridge.exposeInMainWorld("electron", {
   },
   getStatistics: () => ipcInvoke("statistics"),
   getStaticData: () => ipcInvoke("getStaticData"),
+  sendFrameAction: () => (payload: FrameWindowAction) => ipcSend("sendFrameAction", payload),
 });
 
 // the "main world" is the JS context that your main renderer('backend') code runs in
@@ -34,4 +35,11 @@ export function ipcOn<Key extends keyof EventPayloadMapping>(
     callback(payload);
   electron.ipcRenderer.on(key, cbHelperFunc);
   return () => electron.ipcRenderer.off(key, cbHelperFunc);
+}
+
+export function ipcSend<Key extends keyof EventPayloadMapping>(
+  key: Key,
+  payload: EventPayloadMapping[Key]
+) {
+  electron.ipcRenderer.send(key, payload); // Correct function to send the payload
 }

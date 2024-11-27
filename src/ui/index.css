@@ -28,10 +28,10 @@ header {
   
   & button {
     all: unset;
-    border-radius: 8%;
-    width: 20px;
+    border-radius: 16%;
+    width: 24px;
     margin: 0.25rem;
-    border: 1px solid #555;
+    border: 2px solid #555;
     cursor: pointer;
     text-align: center;
     -webkit-app-region: no-drag;
