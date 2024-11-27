@@ -12,3 +12,28 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: right;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  box-sizing: border-box;
+  background-color: #181818;
+  -webkit-app-region: drag;
+  
+  & button {
+    all: unset;
+    border-radius: 8%;
+    width: 20px;
+    margin: 0.25rem;
+    border: 1px solid #555;
+    cursor: pointer;
+    text-align: center;
+    -webkit-app-region: no-drag;
+  }
+}

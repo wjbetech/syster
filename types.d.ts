@@ -15,6 +15,8 @@ type Statistics = {
 
 type View = "CPU" | "RAM" | "Storage" | "Theme" | "Apps";
 
+type FrameWindowAction = "CLOSE" | "MINIMIZE" | "MAXIMIZE"
+
 interface Window {
   electron: {
     subscribeStatistics: (
@@ -39,4 +41,5 @@ type EventPayloadMapping = {
     cpuModel: string;
   };
   changeView: View;
+  sendFrameAction: FrameWindowAction;
 };

@@ -42,6 +42,11 @@ function App() {
   return (
     <div className="App">
       <div>
+        <header>
+          <button id="close">X</button>
+          <button id="minimize">-</button>
+          <button id="maximize">+</button>
+        </header>
         <h2>Computer:</h2>
         <p>
           Platform: {staticData.cpuPlatform === "win32" ? "Windows" : "Unknown"}
