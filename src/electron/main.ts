@@ -1,5 +1,5 @@
 import { app, BrowserWindow } from "electron";
-import { ipcMainHandle, isDev } from "./utils/utils.js";
+import { ipcMainHandle, ipcMainOn, isDev } from "./utils/utils.js";
 import {
   getDynamicData,
   getStaticData,
@@ -41,6 +41,13 @@ app.on("ready", () => {
   ipcMainHandle("getStaticData", () => {
     return getStaticData();
   });
+  
+  ipcMainOn("sendFrameAction", (payload) => {
+    switch (payload) {
+      case "CLOSE":
+        mainWindow.close();
+    }
+  })
 
   createTray(mainWindow);
   handleCloseEvents(mainWindow);

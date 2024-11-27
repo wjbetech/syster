@@ -15,7 +15,7 @@ type Statistics = {
 
 type View = "CPU" | "RAM" | "Storage" | "Theme" | "Apps";
 
-type FrameWindowAction = "CLOSE" | "MINIMIZE" | "MAXIMIZE"
+type FrameWindowAction = "CLOSE" | "MINIMIZE" | "MAXIMIZE";
 
 interface Window {
   electron: {
@@ -29,7 +29,7 @@ interface Window {
     }>;
     getStatistics: () => Promise<Statistics>;
     subscribeChangeView: (callback: (view: View) => void) => Unsubscribe;
-    sendFrameAction: (action: FrameWindowAction) => void;
+    sendFrameAction: (action: FrameWindowAction) => FrameWindowAction;
   };
 }
 

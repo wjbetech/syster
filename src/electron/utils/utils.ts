@@ -23,6 +23,17 @@ export async function ipcMainHandle<Key extends keyof EventPayloadMapping>(
   });
 }
 
+// ipcMainHandle variant for handling "on" events /w payloads
+export function ipcMainOn<Key extends keyof EventPayloadMapping>(
+  key: Key,
+  handler: (payload: EventPayloadMapping) => void,
+) {
+  ipcMain.on(key, (event, payload) => {
+    validateEventFrame(event.senderFrame);
+    return handler(payload);
+  });
+}
+
 // allow main process to push data directly to renderer,
 // it can update the UI without waiting for renderer to ask.
 export async function ipcSendWebContents<Key extends keyof EventPayloadMapping>(
