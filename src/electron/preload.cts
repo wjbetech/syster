@@ -13,7 +13,9 @@ electron.contextBridge.exposeInMainWorld("electron", {
   },
   getStatistics: () => ipcInvoke("statistics"),
   getStaticData: () => ipcInvoke("getStaticData"),
-  sendFrameAction: () => (payload: FrameWindowAction) => ipcSend("sendFrameAction", payload),
+  sendFrameAction: (action: FrameWindowAction) => {
+    ipcSend("sendFrameAction", action); // Sends the action to main process
+  },
 });
 
 // the "main world" is the JS context that your main renderer('backend') code runs in

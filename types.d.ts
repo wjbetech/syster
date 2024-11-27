@@ -29,6 +29,7 @@ interface Window {
     }>;
     getStatistics: () => Promise<Statistics>;
     subscribeChangeView: (callback: (view: View) => void) => Unsubscribe;
+    sendFrameAction: (action: FrameWindowAction) => void;
   };
 }
 

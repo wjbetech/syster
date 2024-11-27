@@ -43,9 +43,9 @@ function App() {
     <div className="App">
       <div>
         <header>
-          <button id="close">X</button>
-          <button id="minimize">-</button>
-          <button id="maximize">+</button>
+          <button id="close" onClick={() => window.electron.sendFrameAction("CLOSE")}>X</button>
+          <button id="minimize" onClick={() => window.electron.sendFrameAction("MINIMIZE")}>-</button>
+          <button id="maximize" onClick={() => window.electron.sendFrameAction("MAXIMIZE")}>+</button>
         </header>
         <h2>Computer:</h2>
         <p>
