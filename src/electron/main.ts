@@ -46,6 +46,19 @@ app.on("ready", () => {
     switch (payload) {
       case "CLOSE":
         mainWindow.close();
+        break;
+      case "MINIMIZE":
+        mainWindow.minimize();
+        break;
+      case "MAXIMIZE":
+        if (mainWindow.isMaximized()) {
+          mainWindow.unmaximize();
+        } else {
+          mainWindow.maximize();
+        }
+        break;
+      default:
+        
     }
   })
 

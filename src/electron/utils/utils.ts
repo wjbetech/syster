@@ -26,7 +26,7 @@ export async function ipcMainHandle<Key extends keyof EventPayloadMapping>(
 // ipcMainHandle variant for handling "on" events /w payloads
 export function ipcMainOn<Key extends keyof EventPayloadMapping>(
   key: Key,
-  handler: (payload: EventPayloadMapping) => void,
+  handler: (payload: EventPayloadMapping[Key]) => void,
 ) {
   ipcMain.on(key, (event, payload) => {
     validateEventFrame(event.senderFrame);
