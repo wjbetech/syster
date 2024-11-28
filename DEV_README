@@ -4,7 +4,7 @@ This Electron application uses several tools for a smooth development experience
 
 ## cross-env
 
-Electron applications often require different environment variables for development and production builds. Setting these environment variables can vary depending on the operating system, which can cause issues in cross-platform development.
+Electron applications often require different environment variables for development and production builds. Setting these environment variables can vary depending on the operating system, which can cause issues in cross-platform development
 
 `cross-env` helps solve this by providing a consistent, cross-platform way to set environment variables. This allows us to specify variables like `NODE_ENV=development` without worrying about OS compatibility. For instance, in our development script:
 
@@ -12,11 +12,11 @@ Electron applications often require different environment variables for developm
 "dev:electron": "npm run transpile:electron && cross-env NODE_ENV=development electron ."
 ```
 
-Note that You cannot use ; after `transpile:electron`, you must use `&&` to chain commands without errors.
+Note that You cannot use ; after `transpile:electron`, you must use `&&` to chain commands without errors
 
 ## npm-run-all
 
-The package npm-run-all manages multiple scripts that need to run in parallel. Running both the React frontend (using Vite) and the Electron main process simultaneously is essential for development. However, managing these processes manually can be tedious and error-prone. This is a pure DX improvement.
+The package npm-run-all manages multiple scripts that need to run in parallel. Running both the React frontend (using Vite) and the Electron main process simultaneously is essential for development. However, managing these processes manually can be tedious and error-prone. This is a pure DX improvement
 
 ```json
 "dev:all": "npm-run-all --parallel dev:react dev:electron"
@@ -24,4 +24,40 @@ The package npm-run-all manages multiple scripts that need to run in parallel. R
 
 ## os-utils
 
-The package os-utils is required in order to get information on our CPU and RAM.
+The package os-utils is required in order to get information on our CPU and RAM
+
+# Testing
+
+## End-to-End Testing
+
+End-to-end testing means making sure that your application does everything right when you press its buttons - from start to finish. It tests the entire workflow, simulating a real user. The goal of end-to-end testing is to ensure the correct and smooth integration of all components (frontend, backend, DB, API) - literally back to front, or "end-to-end"
+
+In the case of an Electron application, your app has a main process and a renderer process. Your main process is the brain of the app, while the renderer process handles visual elements, like buttons, text and charts
+
+Using end-to-end testing, we might want to test from the user perspective how the application works, and from a more top down level the way actions lead to specific results. We want to ensure user actions in the renderer process trigger the correct responses, which are then correctly handled by the main process
+
+It means checking that buttons fire off the correct events and actions - making sure the whole thing works together, not just one single item in isolation
+
+For an Electron app that might mean testing:
+- opening the app
+- clicking buttons
+- checking data updates correctly
+
+Vitest can be used for testing features that cannot be tested using E2E (end to end) tests
+
+## Why E2E?
+
+End-to-end testing simulates real user interactions, where the tests involve multiple components working together, leading to quick turnaround identifying problems that might have been missed in integration tests, such as:
+
+- communication failures between the main and renderer processes
+- incorrect handling of IPC (Inter-Process Communication) events
+- issues with external dependencies, such as APIs or DBs
+
+End-to-end tests can provide a reasonable level of confidence that your application will function properly in a production-like environment
+
+The best times to implement end-to-end tests are before major releases, built into CI/CD systems, or for testing critical user flows, e.g. user auth or data handling
+
+## E2E in Electron
+
+Popular end-to-end testing tools for Electron include Playwright or Puppeteer, Spectron, and Cypress.
+

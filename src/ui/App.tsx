@@ -3,13 +3,13 @@ import { useStatistics } from "../hooks/useStatistics";
 import Chart from "./components/Chart";
 
 function App() {
-  const [views, setViews] = useState<View[]>([
-    "CPU",
-    "RAM",
-    "Storage",
-    "Theme",
-    "Apps",
-  ]);
+  // const [views, setViews] = useState<View[]>([
+  //   "CPU",
+  //   "RAM",
+  //   "Storage",
+  //   "Theme",
+  //   "Apps",
+  // ]);
   const [staticData, setStaticData] = useState({
     cpuPlatform: "",
     coreCount: 0,
