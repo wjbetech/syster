@@ -36,4 +36,28 @@ header {
     text-align: center;
     -webkit-app-region: no-drag;
   }
+  
+  & button#close {
+    background-color: rgba(255, 0, 0, 0.500);
+  }
+    
+  & button#close:hover {
+    background-color: red;
+  }
+  
+  & button#minimize {
+    background-color: rgba(255, 166, 0, 0.5);
+  }
+  
+    & button#minimize:hover {
+    background-color: orange;
+  }
+  
+  & button#maximize {
+    background-color: rgba(0, 128, 0, 0.5);
+  }
+  
+    & button#maximize:hover {
+    background-color: green;
+  }
 }
