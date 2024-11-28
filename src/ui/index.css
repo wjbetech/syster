@@ -13,6 +13,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.App {
+  padding: 0.5rem; 
+}
+
 header {
   position: absolute;
   top: 0;
@@ -30,7 +34,7 @@ header {
     all: unset;
     border-radius: 16%;
     width: 24px;
-    margin: 0.25rem;
+    margin: 0.1rem 0.2rem;
     border: 2px solid #555;
     cursor: pointer;
     text-align: center;
@@ -59,5 +63,21 @@ header {
   
     & button#maximize:hover {
     background-color: green;
+  }
+}
+
+section {
+  margin: 36px auto;
+  text-align: center;
+  
+  & h3 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    color: #777;
+  }
+  
+  & .subheader {
+    color: #666;
+    font-weight: bold;
   }
 }

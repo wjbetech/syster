@@ -43,16 +43,18 @@ function App() {
     <div className="App">
       <div>
         <header>
-          <button id="close" onClick={() => window.electron.sendFrameAction("CLOSE")}>X</button>
           <button id="minimize" onClick={() => window.electron.sendFrameAction("MINIMIZE")}>-</button>
           <button id="maximize" onClick={() => window.electron.sendFrameAction("MAXIMIZE")}>+</button>
+          <button id="close" onClick={() => window.electron.sendFrameAction("CLOSE")}>X</button>
         </header>
-        <h2>Computer:</h2>
-        <p>
-          Platform: {staticData.cpuPlatform === "win32" ? "Windows" : "Unknown"}
-        </p>
-        <p>CPU Model: {staticData.cpuModel}</p>
-        <p>Core Count: {staticData.coreCount}</p>
+        <section>
+          <h3>Syster</h3>
+          <p>
+            <span className="subheader">Platform: </span>{staticData.cpuPlatform === "win32" ? "Windows" : "Unknown"}
+          </p>
+          <p><span className="subheader">CPU Model: </span>{staticData.cpuModel}</p>
+          <p><span className="subheader">Core Count: </span>{staticData.coreCount}</p>
+        </section>
       </div>
       <div style={{ height: 160 }}>
         <span>CPU Usage:</span>
