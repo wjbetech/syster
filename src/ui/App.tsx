@@ -89,22 +89,29 @@ function App() {
           >
             System{" "}
           </h4>
-          {views.system && (
-            <div id="system" className="text-sm">
-              <p>
-                <span className="subheader">Platform: </span>
-                {staticData.cpuPlatform === "win32" ? "Windows" : "Unknown"}
-              </p>
-              <p>
-                <span className="subheader">CPU Model: </span>
-                {staticData.cpuModel}
-              </p>
-              <p>
-                <span className="subheader">Core Count: </span>
-                {staticData.coreCount}
-              </p>
-            </div>
-          )}
+          <div
+            id="system"
+            className={`transition-all duration-500 ease-in-out ${
+              views.system ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+            } overflow-hidden`}
+          >
+            {views.system && (
+              <div className="text-sm">
+                <p>
+                  <span className="subheader">Platform: </span>
+                  {staticData.cpuPlatform === "win32" ? "Windows" : "Unknown"}
+                </p>
+                <p>
+                  <span className="subheader">CPU Model: </span>
+                  {staticData.cpuModel}
+                </p>
+                <p>
+                  <span className="subheader">Core Count: </span>
+                  {staticData.coreCount}
+                </p>
+              </div>
+            )}
+          </div>
         </section>
       </div>
 
