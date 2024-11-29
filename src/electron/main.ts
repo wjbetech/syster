@@ -41,7 +41,7 @@ app.on("ready", () => {
   ipcMainHandle("getStaticData", () => {
     return getStaticData();
   });
-  
+
   ipcMainOn("sendFrameAction", (payload) => {
     switch (payload) {
       case "CLOSE":
@@ -58,9 +58,8 @@ app.on("ready", () => {
         }
         break;
       default:
-        
     }
-  })
+  });
 
   createTray(mainWindow);
   handleCloseEvents(mainWindow);

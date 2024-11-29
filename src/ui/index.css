@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -5,7 +9,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #363636;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,71 +17,21 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.App {
-  padding: 0.5rem; 
-}
-
 header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  text-align: right;
-  align-items: center;
-  justify-content: center;
-  padding: 0.25rem;
-  box-sizing: border-box;
-  background-color: #181818;
   -webkit-app-region: drag;
-  
-  & button {
-    all: unset;
-    border-radius: 16%;
-    width: 24px;
-    margin: 0.1rem 0.2rem;
-    border: 2px solid #555;
-    cursor: pointer;
-    text-align: center;
-    -webkit-app-region: no-drag;
-  }
-  
-  & button#close {
-    background-color: rgba(255, 0, 0, 0.500);
-  }
-    
-  & button#close:hover {
-    background-color: red;
-  }
-  
-  & button#minimize {
-    background-color: rgba(255, 166, 0, 0.5);
-  }
-  
-    & button#minimize:hover {
-    background-color: orange;
-  }
-  
-  & button#maximize {
-    background-color: rgba(0, 128, 0, 0.5);
-  }
-  
-    & button#maximize:hover {
-    background-color: green;
-  }
 }
 
 section {
-  margin: 36px auto;
-  text-align: center;
-  
+  margin: 48px auto 24px auto;
+
   & h3 {
     margin-bottom: 1rem;
     font-size: 2rem;
     color: #777;
   }
-  
+
   & .subheader {
-    color: #666;
+    color: #888;
     font-weight: bold;
   }
 }
