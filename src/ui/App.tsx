@@ -41,6 +41,8 @@ function App() {
     [statistics]
   );
 
+  // handle resizing with useEffect
+
   // fetch static data once on initial app load
   useEffect(() => {
     (async () => {

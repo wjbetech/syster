@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 import { ipcMainHandle, ipcMainOn, isDev } from "./utils/utils.js";
 import {
   getDynamicData,
@@ -24,6 +24,7 @@ app.on("ready", () => {
       nodeIntegration: false,
     },
     frame: false,
+    resizable: true,
   });
   if (isDev()) {
     mainWindow.loadURL("http://localhost:5123");
@@ -32,6 +33,10 @@ app.on("ready", () => {
   }
 
   pollResources(mainWindow);
+
+  ipcMain.on("resize-window", (_, width, height) => {
+    mainWindow?.setSize(width, height, true); // Dynamically set the window size
+  });
 
   ipcMainHandle("statistics", async () => {
     return {
