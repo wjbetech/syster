@@ -80,7 +80,7 @@ function App() {
   };
 
   return (
-    <div className="bg-slate-700 h-auto p-2">
+    <div className="bg-slate-700 h-svh p-2">
       <div>
         {/* header bar with minimize, maximize and close buttons */}
         <header className="flex flex-row justify-between absolute top-0 left-0 w-full items-center py-2 px-2 box-border bg-slate-800">

@@ -24,7 +24,9 @@ app.on("ready", () => {
       nodeIntegration: false,
     },
     frame: false,
-    resizable: true,
+    resizable: false,
+    height: 500,
+    width: 400,
   });
   if (isDev()) {
     mainWindow.loadURL("http://localhost:5123");
