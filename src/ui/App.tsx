@@ -78,7 +78,7 @@ function App() {
   };
 
   return (
-    <div className="bg-slate-700 h-svh overflow-hidden p-2">
+    <div className="bg-slate-700 h-auto p-2">
       <div>
         {/* header bar with minimize, maximize and close buttons */}
         <header className="flex flex-row justify-between absolute top-0 left-0 w-full items-center py-2 px-2 box-border bg-slate-800">
@@ -87,23 +87,38 @@ function App() {
             <button
               id="minimize"
               onClick={() => window.electron.sendFrameAction("MINIMIZE")}
-              className="bg-yellow-600 rounded-sm scale-[0.80]"
+              className="bg-yellow-600 rounded-sm scale-[0.80] cursor-pointer"
             >
-              <img className="size-8 scale-75" src={minimizeSymbol} alt="" />
+              <img
+                className="size-8 scale-75 pointer-events-none"
+                src={minimizeSymbol}
+                alt=""
+              />
             </button>
             <button
               id="maximize"
-              onClick={() => window.electron.sendFrameAction("MAXIMIZE")}
+              onClick={() => {
+                window.electron.sendFrameAction("MAXIMIZE");
+                console.log("Clicked"!);
+              }}
               className="bg-green-600 rounded-sm scale-[0.80]"
             >
-              <img className="size-8 scale-75" src={expandSymbol} alt="" />
+              <img
+                className="size-8 scale-75 pointer-events-none"
+                src={expandSymbol}
+                alt=""
+              />
             </button>
             <button
               id="close"
               onClick={() => window.electron.sendFrameAction("CLOSE")}
               className="bg-red-600 rounded-sm scale-[0.80]"
             >
-              <img className="size-8 scale-75" src={closeSymbol} alt="" />
+              <img
+                className="size-8 scale-75 pointer-events-none"
+                src={closeSymbol}
+                alt=""
+              />
             </button>
           </div>
         </header>

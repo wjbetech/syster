@@ -19,3 +19,8 @@
 header {
   -webkit-app-region: drag;
 }
+
+/* DO NOT REMOVE - breaks header buttons */
+button {
+  -webkit-app-region: no-drag;
+}
