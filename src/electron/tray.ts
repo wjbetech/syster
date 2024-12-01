@@ -4,7 +4,10 @@ import { getAssetPath } from "./pathResolver.js";
 
 export function createTray(mainWindow: BrowserWindow) {
   const tray = new Tray(
-    path.join(getAssetPath(), process.platform === "darwin" ? "trayIconTemplate.png" : "trayIcon.png")
+    path.join(
+      getAssetPath(),
+      process.platform === "darwin" ? "trayIconTemplate.png" : "trayIcon.png"
+    )
   );
 
   tray.setContextMenu(
@@ -16,12 +19,12 @@ export function createTray(mainWindow: BrowserWindow) {
           if (app.dock) {
             app.dock.show();
           }
-        }
+        },
       },
       {
         label: "Quit",
-        click: () => app.quit()
-      }
+        click: () => app.quit(),
+      },
     ])
   );
 }
